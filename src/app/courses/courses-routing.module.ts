@@ -1,22 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
-const routes: Routes = [
-
-];
+const routes: Routes = [];
 
 @NgModule({
-  imports: [
-
-  ],
+  imports: [],
   exports: [RouterModule],
-  providers: [
-
-  ]
+  providers: [],
 })
-export class CoursesRoutingModule {
-
-
-
-}
+export class CoursesRoutingModule {}
