@@ -5,6 +5,7 @@ import { CourseComponent } from './course/course.component';
 import { courseResolver } from './services/course.resolver';
 import { LessonsListComponent } from './lessons-list/lessons-list.component';
 import { LessonDetailComponent } from './lesson/lesson-detail.component';
+import { lessonsResolver } from './services/lessons.resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,7 +13,11 @@ const routes: Routes = [
     path: ':courseUrl',
     component: CourseComponent,
     children: [
-      { path: '', component: LessonsListComponent },
+      {
+        path: '',
+        component: LessonsListComponent,
+        resolve: { lessons: lessonsResolver },
+      },
       { path: 'lessons/:lessonSeqNo', component: LessonDetailComponent },
     ],
     resolve: { course: courseResolver },
