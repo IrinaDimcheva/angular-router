@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { canLoadAuthGuard } from './services/can-load-auth.guard';
+import { CustomPreloadingStrategy } from './services/custom-preloading.strategy';
 
 const routes: Routes = [
   { path: '', redirectTo: '/courses', pathMatch: 'full' },
@@ -11,7 +13,8 @@ const routes: Routes = [
     path: 'courses',
     loadChildren: () =>
       import('./courses/courses.module').then((m) => m.CoursesModule),
-    canMatch: [canLoadAuthGuard],
+    // canMatch: [canLoadAuthGuard],
+    data: { preload: true },
   },
   { path: 'login', component: LoginComponent },
   { path: 'about', component: AboutComponent },
@@ -19,8 +22,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      // preloadingStrategy: PreloadAllModules,
+      preloadingStrategy: CustomPreloadingStrategy,
+    }),
+  ],
   exports: [RouterModule],
-  providers: [],
+  providers: [CustomPreloadingStrategy],
 })
 export class AppRoutingModule {}
