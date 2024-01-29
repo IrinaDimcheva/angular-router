@@ -6,6 +6,12 @@
   <div class="buttons-container">
     <button mat-raised-button color="primary">Send Message</button>
 
-    <button mat-raised-button>Close Chat</button>
+    <!--
+    Does not work
+    <button
+      mat-raised-button
+      [routerLink]="['../', { outlets: { chat: null } }]"
+    > -->
+    <button mat-raised-button (click)="closeChat()">Close Chat</button>
   </div>
 </div>

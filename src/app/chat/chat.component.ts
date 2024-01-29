@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit {
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
-  constructor(private route:ActivatedRoute) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  closeChat() {
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
-
 }
