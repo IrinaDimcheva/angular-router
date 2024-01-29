@@ -28,6 +28,11 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       // preloadingStrategy: PreloadAllModules,
       preloadingStrategy: CustomPreloadingStrategy,
+      enableTracing: true,
+      useHash: false,
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+      paramsInheritanceStrategy: 'always',
     }),
   ],
   exports: [RouterModule],

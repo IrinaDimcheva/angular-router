@@ -13,7 +13,8 @@ export const lessonDetailResolver: ResolveFn<LessonDetail> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ): Observable<LessonDetail> => {
-  const courseUrl = route.parent.paramMap.get('courseUrl'),
+  // const courseUrl = route.parent.paramMap.get('courseUrl'),
+  const courseUrl = route.paramMap.get('courseUrl'),
     lessonSeqNo = route.paramMap.get('lessonSeqNo');
 
   return inject(CoursesService).loadLessonDetail(courseUrl, lessonSeqNo);
